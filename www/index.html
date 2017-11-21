@@ -522,18 +522,14 @@ ul.share-buttons img{
 		</div>
 		<!--ITINERARY DETAILS DIV ///// TODO-->
 		<div id="route-details" class="container-fluid" style="position: absolute; right:0px; left:0px; top:0px; min-height: 100%; z-index:2000; background:#fafafa; box-shadow: 0 0 10px black;" hidden>
-			<div class="row" style="padding-top:10px; padding-right: 10px;">
-				<div id="closedetails" class="col-xs-1 col-xs-offset-11">
-					<i class="fa fa-times" style="color:grey; font-size:30px;"></i>
-				</div>
+			<div class="row" style="padding-top:10px; padding-right: 10px; text-align:right;">
+					<i id="closedetails" class="fa fa-times" style="color:grey; font-size:30px;"></i>
 			</div>
 			<div id="details-content" class="row" style="padding:10px;">
 			</div>
 			<hr>
-			<div class="row" style="padding-bottom: 20px;">
-				<div class="col-xs-4 col-xs-offset-8">
+			<div class="row" style="padding-bottom: 20px; text-align: center;">
 					<button type="button" class="btn btn-default" id="closedetails2">Close</button>
-				</div>
 			</div>
 		</div>
 
@@ -591,10 +587,10 @@ ul.share-buttons img{
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header" style="padding-top: 30px;">
-<!-- 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+ 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size:32px;">&times;</span></button>
 						<h4 class="modal-title" id="myModalLabel"><img src = "img/logo1.png" width="80%"></h4>
 					</div>
-					<div class="modal-body text-justify">
+					<div class="modal-body text-justify" style="padding-bottom:10px;">
 						<div class='row menuentry'>
 							<div class='col-xs-2'><i class='fa fa-question-circle-o fa-lg fa-fw'></i></div>
 							<div id="gototuto" class='col-xs-10 men'>Tutorial</div>
@@ -1487,7 +1483,7 @@ ul.share-buttons img{
 				getWikiDesc(spname).then(function(resu){
 					if (resu!=null) {
 						text = '<div>' + resu.extract + '</div>';
-						text += "<div style='padding-bottom:10px;text-align:right; font-size:xx-small;'><a href='https://en.wikipedia.org/wiki/" + spname + "' target='_blank'>more on <i class='fa fa-wikipedia-w'></i>ikipedia</a><br></div>";
+						text += "<div style='padding-bottom:10px;text-align:right; font-size:xx-small;'><a href='https://en.wikipedia.org/wiki/" + spname + "' target='_blank' style='color:grey;'>more on <i class='fa fa-wikipedia-w'></i>ikipedia</a><br></div>";
 						$('#modalbody-text').append(text);	
 						if (resu.thumbnail!==undefined) {
 							//we add the image to the popup
@@ -1495,7 +1491,7 @@ ul.share-buttons img{
 							$('#modalbody-pict').append(pict);
 						}
 						else {
-							pict = "<div style='padding:10px; font-size:xx-small; text-align:center; color:grey;'> No picture associated to this articlke on Wikipedia. Click <a href='https://en.wikipedia.org/wiki/" + spname + "' target='_blank'>here</a> if you want to upload one now.</div>";
+							pict = "<div style='padding:10px; font-size:xx-small; text-align:center; color:grey;'> No picture associated to this articlke on Wikipedia. Click <a href='https://en.wikipedia.org/wiki/" + spname + "' target='_blank' style='color:grey;'>here</a> if you want to upload one now.</div>";
 							$('#modalbody-pict').append(pict);
 						}
 					}

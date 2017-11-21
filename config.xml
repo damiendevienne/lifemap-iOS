@@ -1,51 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns   = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "fr.univ-lyon1.lifemapcom"
-        version     = "1.1.0" >
-    <!-- versionCode is optional and Android only -->
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="1" id="fr.univlyon1.lifemap" ios-CFBundleVersion="1.0.0" version="1.2.0">
     <name>Lifemap</name>
     <description>
-      Lifemap is a tool to explore the tree of life in an interactive manner. It is based on a modification of the NCBI taxonomy and contains around 800,000 species. Each node (incl. species) in the tree can be clicked on to get information and pictures retrieved from wikipedia. It is also possible to compute the route between taxa or clades in the tree.  
+	Lifemap is a tool to explore the tree of life in an interactive manner, similar to the explotation of geographic maps. The tree displayed is a simplification of the taxonomy provided by the NCBI. The tree contains around 800,000 species. Each node (incl. species) in the tree can be clicked to get information and pictures retrieved from Wikipedia. It is also possible to compute and visualize the "route" between two taxa or clades in the tree. 
     </description>
-    <author href="https://lbbe.univ-lyon1.fr/-de-Vienne-Damien-.html" email="damien.de-vienne@univ-lyon1.fr">
-        Damien de Vienne 
+    <author email="damien.de-vienne@univ-lyon1.fr" href="https://lbbe.univ-lyon1.fr/-de-Vienne-Damien-.html">
+        Dr. Damien de Vienne 
     </author>
-
-<!--    <plugin name="cordova-plugin-splashscreen" />-->
-
-    <icon src="logo_ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
-    <icon src="logo_mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
-    <icon src="logo_hdpi.png"   gap:platform="android"    gap:qualifier="hdpi" />
-    <icon src="logo_xhdpi.png"  gap:platform="android"    gap:qualifier="xhdpi" />
-    <icon src="logo_xxhdpi.png"  gap:platform="android"    gap:qualifier="xxhdpi" />
-    <icon src="logo_xxxhdpi.png"  gap:platform="android"    gap:qualifier="xxxhdpi" />
-
-<!--    <splash src="splash.png" />   
- Define app splash screen for each platform. 
-    <splash src="screen_ldpi.png" platform="android" qualifier="port-ldpi" />   
-    <splash src="screen_mdpi.png" platform="android" qualifier="port-mdpi" />   
-    <splash src="screen_hdpi.png" platform="android" qualifier="port-hdpi" />   
-    <splash src="screen_xhdpi.png" platform="android" qualifier="port-xhdpi" />  
-    <splash src="screen_xxhdpi.png" platform="android" qualifier="port-xxhdpi" /> 
-    <splash src="screen_xxxhdpi.png" platform="android" qualifier="port-xxxhdpi" />
--->
-
-    <access origin="*"/>
-    <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
-    <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
-    <plugin name="cordova-plugin-whitelist" version="1" />
+    <content src="index.html" />
+    <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <allow-navigation href="http://umr5558-treezoom/*" />
     <allow-navigation href="http://umr5558-ncbitreezoom/*" />
-<!--    <feature name="StatusBar">
-      <param name="ios-package" value="CDVStatusBar" onload="true" />
-    </feature>
-    <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#165769"/>
-    <preference name="StatusBarStyle" value="lightcontent" />        
--->
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <engine name="android" spec="^6.3.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-splashscreen" />
 </widget>
