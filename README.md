@@ -1,16 +1,14 @@
 # lifemap_mobile_Phonegap
 
-This is the folder used to create the Lifemap app for android and ios with CORDOVA. 
+This is the folder used to create the Lifemap app for ios with CORDOVA. 
 
-cordova-icon and cordova-splash must be installed first.
+cordova-icon must be installed first.
 
-To create the App for android, type:
+To create the App for ios, type:
 
-`>cordova platform add android`
+`>cordova platform add ios`
 
 `>cordova-icon`
-
-`>cordova-splash`
 
 `>cordova build`
 
