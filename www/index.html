@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>Lifemap</title>
 
@@ -59,7 +59,9 @@
 		<style>
 			body,html {
 				height:100%;
-			}
+/*				padding-top: constant(safe-area-inset-top);
+				padding-top: env(safe-area-inset-top);
+*/			}
 			.vcenter {
 				display: inline-block;
 				vertical-align: middle;
@@ -322,7 +324,7 @@ ul.share-buttons img{
 		</style>
 		<!--PHONE SPECIFIC FUNCTIONS-->
 	</head>
-	<body onload="testCon()" style="background:black;">
+	<body onload="testCon()" style="background-color:black;">
 
 
 
@@ -464,7 +466,7 @@ ul.share-buttons img{
 			<div id="loading" style="position:absolute; left:50%; top:50%;z-index:10000;"><img src="img/loading.gif" height="20px;" width="20px"></div>
 		</div>
 		<!--SIMPLE SEARCH DIV-->
-		<div id="mainsearch" class="container-fluid" style="position: absolute; right:0px; left:0px; top:20px; background:transparent; margin: 10px 10px 0px 10px; padding:0px; z-index:10;">
+		<div id="mainsearch" class="container-fluid" style="position: absolute; right:0px; left:0px; top:constant(safe-area-inset-top); top:env(safe-area-inset-top); background:transparent; margin: 10px 10px 0px 10px; padding:0px; z-index:10;">
 			<div class="btn-group" style="width:100%;">
 				<span id="sandwich" class="glyphicon glyphicon-menu-hamburger"></span>
 				<input id="searchinput" type="search" class="form-control" style=" height:50px;" placeholder="Search species, clades, ...">
@@ -583,7 +585,8 @@ ul.share-buttons img{
 		</div>
 
 		<!--MODAL WITH THE MENU -->	
-		<div class="modal fade left" id="theMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal fade left" id="theMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top: constant(safe-area-inset-top);
+				padding-top: env(safe-area-inset-top);">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header" style="padding-top: 30px;">
