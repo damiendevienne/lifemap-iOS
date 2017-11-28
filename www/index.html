@@ -245,7 +245,23 @@
 			  height: 100px !important;
 			  font-size: 10px;
 			}
-
+			.CloseSwiper {
+				text-align:right;
+				padding-top: 10px;
+				padding-right: 10px;
+				color:white;
+			}
+			.padphone{
+				padding-top: constant(safe-area-inset-top); 
+				padding-top: env(safe-area-inset-top);
+				padding-bottom: 20px;
+/*				padding-bottom: constant(safe-area-inset-bottom); 
+				padding-bottom: env(safe-area-inset-bottom);
+*/			}
+			.swiper-zoom-container {
+				width:85%;
+				height:85%;
+			}
 			/*******************************
 * MODAL AS LEFT/RIGHT SIDEBAR
 * Add "left" or "right" in modal parent div, after class="modal".
@@ -329,8 +345,8 @@ ul.share-buttons img{
 
 
 <!--SWIPER TUTORIAL-->
-	<div id = "tuto" class="swiper-container" hidden>
-        <div onclick="closetheswiper(this)" style="position:absolute; top: 10px; right:10px; z-index:10; color:white;"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
+	<div id = "tuto" class="swiper-container padphone" hidden>
+        <div onclick="closetheswiper(this)" class="CloseSwiper"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
         <div class="swiper-wrapper">
             <div class="swiper-slide">
             	<div class="swiper-zoom-container">
@@ -382,8 +398,8 @@ ul.share-buttons img{
 
 
 <!--SWIPER ABOUT-->
-	<div id = "aboutswiper" class="swiper-container" hidden>
-        <div onclick="closetheswiper(this)" style="position:absolute; top: 10px; right:10px; z-index:10; color:white;"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
+	<div id = "aboutswiper" class="swiper-container padphone" hidden>
+        <div onclick="closetheswiper(this)" class="CloseSwiper"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
         <div class="swiper-wrapper">
          <div class="swiper-slide">
             	<div class="swiper-zoom-container">
@@ -395,8 +411,8 @@ ul.share-buttons img{
     </div>
 
 <!--SWIPER TOL-->
-	<div id = "tolswiper" class="swiper-container" hidden>
-        <div onclick="closetheswiper(this)" style="position:absolute; top: 10px; right:10px; z-index:10; color:white;"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
+	<div id = "tolswiper" class="swiper-container padphone" hidden>
+        <div onclick="closetheswiper(this)" class="CloseSwiper"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
         <div class="swiper-wrapper">
          <div class="swiper-slide">
             	<div class="swiper-zoom-container">
@@ -407,8 +423,8 @@ ul.share-buttons img{
     	</div>
     </div>
 <!--SWIPER CONTACT-->
-	<div id = "contactswiper" class="swiper-container" hidden>
-        <div onclick="closetheswiper(this)" style="position:absolute; top: 10px; right:10px; z-index:10; color:white;"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
+	<div id = "contactswiper" class="swiper-container padphone" hidden>
+        <div onclick="closetheswiper(this)" class="CloseSwiper"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
         <div class="swiper-wrapper">
          <div class="swiper-slide">
             	<div class="swiper-zoom-container">
@@ -436,8 +452,8 @@ ul.share-buttons img{
 
 
 <!--SWIPER SHARE-->
-	<div id = "shareswiper" class="swiper-container" hidden>
-        <div onclick="closetheswiper(this)" style="position:absolute; top: 10px; right:10px; z-index:10; color:white;"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
+	<div id = "shareswiper" class="swiper-container padphone" hidden>
+        <div onclick="closetheswiper(this)" class="CloseSwiper"><i class="fa fa-times fa-2x" aria-hidden="true"></i></div>
         <div class="swiper-wrapper">
          <div class="swiper-slide">
             	<div class="swiper-zoom-container">                    
@@ -488,7 +504,8 @@ ul.share-buttons img{
 		</div>
 			
 		<!-- ITINERARIES SEARCH DIV (TOP) -->
-		<div id="route-top" class="container-fluid" style=" padding-left:15px; padding-right:35px; background:#b4c3e0; box-shadow: 0 0 10px black; position: absolute; right:0px; left:0px; top:0; z-index: 100;" hidden>
+		<div id="route-top" class="container-fluid" style=" padding-left:15px; padding-right:35px; background:#b4c3e0; box-shadow: 0 0 10px black; position: absolute; right:0px; left:0px; top: constant(safe-area-inset-top);
+				top: env(safe-area-inset-top); z-index: 100;" hidden>
 			<div class="row" style="height: 30px;">&nbsp;</div>
 			<div class="row">
 				<div class="col-xs-2" style=" padding-left:0px; padding-right:0px;"><a id="back-to-map" class="btn" style="color:white;"><i class="fa fa-arrow-left"></i></a></div>
@@ -507,8 +524,8 @@ ul.share-buttons img{
 		</div>	
 
 		<!--ITINERARY RESULTS DIV (BOTTOM)-->
-		<div id="route-bottom" class="container-fluid" style="position: absolute; right:0px; left:0px; bottom:0; z-index:1000; background:white; box-shadow: 0 0 10px black;" hidden>
-			<div class="row" style="padding:10px;">
+		<div id="route-bottom" class="container-fluid" style="position: absolute; right:0px; left:0px; bottom:0px; z-index:1000; background:white; box-shadow: 0 0 10px black;" hidden>
+			<div class="row" style="padding:10px; padding-bottom:20px">
 				<div class="col-xs-8 vcenter">
 					<div class="row"><i class="fa fa-map-marker fa-fw" style="color:#ffcc00; text-shadow: 1px 1px 1px #ccc;"></i><span id="routefrom"></span></div>	
 					<div class="row"><i class="fa fa-ellipsis-v fa-fw" style="color:grey;"></i></div>
@@ -523,8 +540,8 @@ ul.share-buttons img{
 			</div>
 		</div>
 		<!--ITINERARY DETAILS DIV ///// TODO-->
-		<div id="route-details" class="container-fluid" style="position: absolute; right:0px; left:0px; top:0px; min-height: 100%; z-index:2000; background:#fafafa; box-shadow: 0 0 10px black;" hidden>
-			<div class="row" style="padding-top:10px; padding-right: 10px; text-align:right;">
+<!-- 		<div id="route-details" class="container-fluid" style="position: absolute; right:0px; left:0px; top:0px; min-height: 100%; z-index:2000; background:#fafafa; box-shadow: 0 0 10px black;" hidden>
+			<div class="row" style="padding-top:constant(safe-area-inset-top); padding-top: env(safe-area-inset-top); padding-right: 10px; text-align:right;">
 					<i id="closedetails" class="fa fa-times" style="color:grey; font-size:30px;"></i>
 			</div>
 			<div id="details-content" class="row" style="padding:10px;">
@@ -534,9 +551,26 @@ ul.share-buttons img{
 					<button type="button" class="btn btn-default" id="closedetails2">Close</button>
 			</div>
 		</div>
+ -->		<!-- REPLACE ROUTE DETAILS WITH A MODAL SEEMS A GOOD IDEA. -->
+		<div id="route-details" class="modal fade padphone" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body text-center">
+						<div id="details-content" class="row" style="padding:10px;">
+						</div>
+					</div>
+					<div class="modal-footer" style="text-align:center;">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!--MODAL DIV THAT WILL CONTAIN THE DESCRIPTION OF THE SPECIES + PICTURES-->
-		<div id="myModal" class="modal fade" role="dialog">
+		<div id="myModal" class="modal fade padphone" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->
 				<div class="modal-content">
@@ -565,7 +599,7 @@ ul.share-buttons img{
 
 
 		<!--LOST CONNECTION MODAL-->
-		<div id="lostconnect" class="modal fade" role="dialog">
+		<div id="lostconnect" class="modal fade padphone" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header text-center">
@@ -585,8 +619,7 @@ ul.share-buttons img{
 		</div>
 
 		<!--MODAL WITH THE MENU -->	
-		<div class="modal fade left" id="theMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top: constant(safe-area-inset-top);
-				padding-top: env(safe-area-inset-top);">
+		<div class="modal fade left padphone" id="theMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header" style="padding-top: 30px;">
@@ -840,13 +873,13 @@ ul.share-buttons img{
 				taxidTo = undefined;
 			});
 			$("#getroutedetails").click(function() {
-				$("#route-details").show();
+				$("#route-details").modal("show");
 			});
 			$("#closedetails").click(function() {
-				$("#route-details").hide();
+				$("#route-details").modal("hide");
 			});
 			$("#closedetails2").click(function() {
-				$("#route-details").hide();
+				$("#route-details").modal("hide");
 			});
 			$("#recenter").click(function() {
 				mrcaroute();
@@ -931,7 +964,7 @@ ul.share-buttons img{
 				return res1.concat(res2.reverse());
 		    }  
 		    var zoomTo = function(taxid) {
-				$("#route-details").hide();
+				$("#route-details").modal("hide");
 		  		var url = 'http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=taxid:"'+taxid+'"&wt=json';
 				if (taxid === 1) {
 					if ($('#ChoiceExplo').find('i').attr('class').match("fa-check-square-o")===null) {
@@ -1147,6 +1180,9 @@ ul.share-buttons img{
 				var URL_PREFIX_FINAL = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=taxid:";
 				var URL_SUFFIX = "&wt=json";
 				$("#searchinput2").autocomplete({
+					open: function(event, ui) {
+    				    $('.ui-autocomplete').off('menufocus hover mouseover mouseenter');
+				    },
 					source : function(request, response) {
 						var URL = URL_PREFIX + $("#searchinput2").val() + URL_SUFFIX;
 						$.ajax({
@@ -1221,6 +1257,9 @@ ul.share-buttons img{
 				var URL_PREFIX_FINAL = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=taxid:";
 				var URL_SUFFIX = "&wt=json";
 				$("#searchinput3").autocomplete({
+					open: function(event, ui) {
+    				    $('.ui-autocomplete').off('menufocus hover mouseover mouseenter');
+				    },
 					source : function(request, response) {
 						var URL = URL_PREFIX + $("#searchinput3").val() + URL_SUFFIX;
 						$.ajax({
