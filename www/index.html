@@ -19,6 +19,7 @@
 		<!-- SWIPeR --> 
 		<link rel="stylesheet" href="css/swiper.min.css">
  		<script src="js/swiper.min.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
 
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -28,7 +29,36 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script>
-		//can we add here a small code that will try to connect to the server and return a message if it didn(t work? We'll try
+		function onLoad() {
+			console.log(navigator.language)
+			//UNCOMMENT WHAT FOLLOWS WHEN THE FR VERSION IS READY. AND TERMINATE THE TRANSLATION (TODO)
+			// if (navigator.language==="fr-FR") {
+			// 	SwitchToFR()
+			// }
+			document.addEventListener("deviceready", onDeviceReady, false);
+		}
+		function SwitchToFR() {
+				$("#searchinput").attr('placeholder', 'Chercher une espèce, un clade, ...');
+				$("#gototuto").html('Tutoriel');
+				$("#thetol").html("L'arbre du vivant")
+				$("#about").html("À propos")
+				$("#contact").html("Contact")
+				$("#share").html("Partager")
+				$("#flybutton").html('"Voler" dans l\'arbre')
+				$("#flytext").html("Si cette case est cochée, le déplacement dans l'arbre après une recherche se fait par une animation.")
+				$("#langchosen").html('Langue : FR')
+		}
+		function SwitchToEN() {
+				$("#searchinput").attr('placeholder', 'Search species, clades, ...');
+				$("#gototuto").html('Tutorial');
+				$("#thetol").html("The Tree of Life")
+				$("#about").html("About")
+				$("#contact").html("Contact")
+				$("#share").html("Share")
+				$("#flybutton").html('"Fly" to new locations')
+				$("#flytext").html('When checked, zooming to new locations after a search in the search bar will be done by a smooth animation')
+				$("#langchosen").html('Langage : EN')
+		}
 		function testCon() {
 			$.ajax({url: "http://lifemap.univ-lyon1.fr",
 				type: "HEAD",
@@ -52,9 +82,20 @@
 		}
 		function errmess() {
 			//we add elements to "loading" to explain that there was a problem
-
 			$('#lostconnect').modal("toggle");
 		}
+	    function onDeviceReady() {	    	
+	    	testCon();
+	    	flyvalue = window.localStorage.getItem("fly")
+			if ( flyvalue=== null) {
+				window.localStorage.setItem("fly", "false")
+			}
+			if ( flyvalue=== "true") { //la case était coché en quittant l"appli la dernière fois
+				$("#ChoiceExplo").find('i').toggleClass('fa-square-o fa-check-square-o')
+			}
+			//IL FAUT LA COCHER
+			//GESTION DE LA LANGUE
+	    }
 		</script>
 		<style>
 			body,html {
@@ -479,11 +520,11 @@ ul.share-buttons img{
 
 
 		<!--MAP-->
-		<div id="map" style="height:100%; z-index:0;">
+		<div id="map" style="top:0px; bottom:0px; left:0px; right:0px;position:absolute;z-index:0;">
 			<div id="loading" style="position:absolute; left:50%; top:50%;z-index:10000;"><img src="img/loading.gif" height="20px;" width="20px"></div>
 		</div>
 		<!--SIMPLE SEARCH DIV-->
-		<div id="mainsearch" class="container-fluid" style="position: absolute; right:0px; left:0px; top:20px; top:constant(safe-area-inset-top); top:env(safe-area-inset-top); background:transparent; margin: 10px 10px 0px 10px; padding:0px; z-index:10;">
+		<div id="mainsearch" class="container-fluid" style="position: absolute; right:0px; left:0px; top:20px; top: constant(safe-area-inset-top); top: env(safe-area-inset-top); background:transparent; margin: 10px 10px 0px 10px; padding:0px; z-index:10;">
 			<div class="btn-group" style="width:100%;">
 				<span id="sandwich" class="glyphicon glyphicon-menu-hamburger"></span>
 				<input id="searchinput" type="search" class="form-control" style=" height:50px;" placeholder="Search species, clades, ...">
@@ -746,15 +787,23 @@ ul.share-buttons img{
 		<script src="js/searchbar/jquery.ui.autocomplete.html.js"></script>
 		<!--HERE IS WHAT CONCERNS THE MAP AND MAP FUNCTION (focus, etc...)-->
 
+
 		<script>
-			$('#ChoiceExplo').click(function(){
+		$('#ChoiceExplo').click(function(){
 				$(this).find('i').toggleClass('fa-square-o fa-check-square-o')
 				str = $(this).find('i').attr('class');
+				if (str.match("fa-check-square-o")===null) {
+					window.localStorage.setItem("fly", "false")
+				}
+				else 
+				{
+					window.localStorage.setItem("fly", "true")
+				}
 		});
 		</script>
 		<script>
 			var map = L.map('map', {zoomControl: false, attributionControl: false});
-			var tolUrl='http://umr5558-treezoom.univ-lyon1.fr/osm_tiles/{z}/{x}/{y}.png';
+			var tolUrl='http://lifemap.univ-lyon1.fr/retina_tiles/{z}/{x}/{y}.png';
 			var tol = new L.TileLayer(tolUrl, {minZoom: 2, maxZoom: 42});
 			map.addLayer(tol);
 			map.setView([-5,0], 4);
@@ -763,8 +812,8 @@ ul.share-buttons img{
 				CreatePopUps();
 			})
 
-/*
-			map.on("click", function() {
+			///THIS WAS SILENED BETFOR (up to ////. WHY?)
+/*			map.on("click", function() {
 				$("#searchinput").blur();
 				$("#searchinput2").blur();
 				$("#searchinput3").blur();
@@ -784,6 +833,7 @@ ul.share-buttons img{
 
 			})
 			*/
+			////
 			var SPfocus = L.marker([0,0]);
 			var pointA = new L.LatLng(0,0);
 			var pointB = new L.LatLng(1,1);
@@ -965,7 +1015,7 @@ ul.share-buttons img{
 		    }  
 		    var zoomTo = function(taxid) {
 				$("#route-details").modal("hide");
-		  		var url = 'http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=taxid:"'+taxid+'"&wt=json';
+		  		var url = 'http://lifemap.univ-lyon1.fr/solr/taxo/select?q=taxid:"'+taxid+'"&wt=json';
 				if (taxid === 1) {
 					if ($('#ChoiceExplo').find('i').attr('class').match("fa-check-square-o")===null) {
 						map.setView(L.latLng([-4.226497,0]),7);
@@ -1004,7 +1054,7 @@ ul.share-buttons img{
 				var lon2 = bb._northEast.lng;
 				var lat1 = bb._southWest.lat;
 				var lat2 = bb._northEast.lat;
-				var URL2 = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=*:*&fq=zoom:[0 TO " + z + "]&fq=lat:[" + lat1 + " TO " + lat2 + "]&fq=lon:[" + lon1 + " TO " + lon2 + "]&wt=json&rows=1000";
+				var URL2 = "http://lifemap.univ-lyon1.fr/solr/taxo/select?q=*:*&fq=zoom:[0 TO " + z + "]&fq=lat:[" + lat1 + " TO " + lat2 + "]&fq=lon:[" + lon1 + " TO " + lon2 + "]&wt=json&rows=1000";
 				$.ajax({
 					url : URL2,
 					success : function(data) {
@@ -1066,8 +1116,8 @@ ul.share-buttons img{
 			//SEARCH FUNCTIONS
 			$(function() {
 				var str;
-				var URL_PREFIX = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/suggesthandler?suggest.q=";
-				var URL_PREFIX_FINAL = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=taxid:";
+				var URL_PREFIX = "http://lifemap.univ-lyon1.fr/solr/taxo/suggesthandler?suggest.q=";
+				var URL_PREFIX_FINAL = "http://lifemap.univ-lyon1.fr/solr/taxo/select?q=taxid:";
 				var URL_SUFFIX = "&wt=json";
 				$("#searchinput").autocomplete({
 					//ONLY FOR IOS: 
@@ -1176,8 +1226,8 @@ ul.share-buttons img{
 			});
 			$(function() {
 				var str;
-				var URL_PREFIX = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/suggesthandler?suggest.q=";
-				var URL_PREFIX_FINAL = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=taxid:";
+				var URL_PREFIX = "http://lifemap.univ-lyon1.fr/solr/taxo/suggesthandler?suggest.q=";
+				var URL_PREFIX_FINAL = "http://lifemap.univ-lyon1.fr/solr/taxo/select?q=taxid:";
 				var URL_SUFFIX = "&wt=json";
 				$("#searchinput2").autocomplete({
 					open: function(event, ui) {
@@ -1253,8 +1303,8 @@ ul.share-buttons img{
 			});
 			$(function() {
 				var str;
-				var URL_PREFIX = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/suggesthandler?suggest.q=";
-				var URL_PREFIX_FINAL = "http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=taxid:";
+				var URL_PREFIX = "http://lifemap.univ-lyon1.fr/solr/taxo/suggesthandler?suggest.q=";
+				var URL_PREFIX_FINAL = "http://lifemap.univ-lyon1.fr/solr/taxo/select?q=taxid:";
 				var URL_SUFFIX = "&wt=json";
 				$("#searchinput3").autocomplete({
 					open: function(event, ui) {
@@ -1352,7 +1402,7 @@ ul.share-buttons img{
 				taxidTo = taxidTo.replace(/\s+/g, '');
 				console.log(taxidFrom);
 				console.log(taxidTo);				
-				var url = 'http://umr5558-treezoom.univ-lyon1.fr:8983/solr/addi/select?q=*:*&fq=taxid:('+taxidFrom+' '+taxidTo+')&wt=json';
+				var url = 'http://lifemap.univ-lyon1.fr/solr/addi/select?q=*:*&fq=taxid:('+taxidFrom+' '+taxidTo+')&wt=json';
 				$.ajax({
 				    url : url,
 				    success : function(data) {
@@ -1378,7 +1428,7 @@ ul.share-buttons img{
 						routeq = route.toString().replace(/,/g,' ');
 						console.log("routeq");
 						console.log(routeq);
-						url2 = 'http://umr5558-treezoom.univ-lyon1.fr:8983/solr/taxo/select?q=*:*&fq=taxid:(' + routeq + ')&wt=json&rows=10000';
+						url2 = 'http://lifemap.univ-lyon1.fr/solr/taxo/select?q=*:*&fq=taxid:(' + routeq + ')&wt=json&rows=10000';
 
 						$.ajax({
 						    url : url2,
