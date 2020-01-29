@@ -32,5 +32,5 @@
     <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
     <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-whitelist" />
-    <plugin name="cordova-plugin-splashscreen" />
+<!--    <plugin name="cordova-plugin-splashscreen" /> -->
 </widget>
