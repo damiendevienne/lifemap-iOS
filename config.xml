@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="fr.univ_lyon1.lifemapcom" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Lifemap</name>
+    <description>
+        Describe here. 
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="http://umr5558-treezoom/*" />
+    <allow-navigation href="http://umr5558-ncbitreezoom/*" />
+
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+<!--        <preference name="StatusBarOverlaysWebView" value="true" />-->
+    </platform>
+</widget>
